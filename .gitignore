@@ -1,0 +1,14 @@
+# Logs and temp files
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+
+# IDE and Editor files
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# OS generated files
+ehthumbs.db

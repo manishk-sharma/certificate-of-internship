@@ -1,0 +1,552 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --navy: #1b2452;
+  --navy-deep: #141c4a;
+  --navy-dark: #060b2b;
+  --gold: #dfa835;
+  --gold-light: #fae298;
+  --gold-dark: #b67310;
+  --ink: #38383b;
+  --muted: #55555a;
+  --cert-scale: 1;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  /* background: var(--navy); */
+  color: #0f172a;
+  font-family: 'Poppins', Arial, sans-serif;
+}
+
+body.actual-size {
+  overflow: auto;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0px, 0px, 0px, 0px);
+  white-space: nowrap;
+  border: 0px;
+}
+
+/* Main viewing canvas wrapper with dark navy backdrop */
+.page-shell {
+  position: relative;
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  overflow: hidden;
+  /* background: var(--navy); */
+}
+
+body.actual-size .page-shell {
+  height: auto;
+  min-height: 100%;
+  overflow: visible;
+  padding: 72px 24px 40px 24px;
+}
+
+/* The Pure White Rectangular Certificate Container (1024px x 700px) */
+.certificate {
+  position: relative;
+  isolation: isolate;
+  flex: 0 0 1024px;
+  width: 1024px;
+  height: 700px;
+  overflow: hidden;
+  margin: auto;
+  background: #ffffff;
+  box-shadow: 0px 20px 50px rgba(0, 0, 0, 0.4);
+  transform: scale(var(--cert-scale, 1));
+  transform-origin: center center;
+}
+
+body.actual-size .certificate {
+  transform: none;
+}
+
+/* Base Artwork Layer (SVG Frame, Gold Inset Line, Corner Ribbons) */
+.frame-artwork {
+  position: absolute;
+  z-index: 1;
+  top: 0px;
+  left: 0px;
+  width: 1024px;
+  height: 700px;
+  pointer-events: none;
+}
+
+/* Content Container sitting on the paper layer */
+.paper {
+  position: absolute;
+  z-index: 2;
+  top: 0px;
+  left: 0px;
+  width: 1024px;
+  height: 700px;
+  overflow: hidden;
+}
+
+/* Three organization logos aligned across top inside the gold frame */
+.brand-header {
+  position: absolute;
+  top: 42px;
+  left: 48px;
+  width: 928px;
+  height: 95px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand {
+  display: block;
+  object-fit: contain;
+}
+
+.brand-iot {
+  width: 136px;
+  height: 80px;
+}
+
+.brand-uct {
+  width: 172px;
+  height: 95px;
+}
+
+.brand-upskill {
+  width: 168px;
+  height: 88px;
+}
+
+/* Notched Swallowtail Ribbon Banner with Gold Border */
+.ribbon-banner {
+  position: absolute;
+  top: 164px;
+  left: 512px;
+  transform: translateX(-50%);
+  width: 488px;
+  height: 62px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  filter: drop-shadow(0px 4px 8px rgba(8, 12, 35, 0.22));
+}
+
+.ribbon-svg {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 488px;
+  height: 62px;
+  pointer-events: none;
+}
+
+.ribbon-title {
+  position: relative;
+  z-index: 2;
+  color: #ffffff;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 28px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* Main Certificate Body & Typography */
+.certificate-body {
+  position: absolute;
+  top: 248px;
+  left: 48px;
+  width: 928px;
+  text-align: center;
+}
+
+.certify-lead {
+  color: #242427;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 22px;
+}
+
+.recipient-name {
+  margin-top: 14px;
+  color: var(--ink);
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 46px;
+  font-weight: 700;
+  line-height: 50px;
+  letter-spacing: 0.5px;
+}
+
+/* Golden Diamond Horizontal Divider */
+.diamond-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 440px;
+  margin: 12px auto 14px auto;
+  gap: 4px;
+}
+
+.diamond-divider .d-line {
+  height: 2px;
+  flex: 1;
+  background: var(--gold);
+}
+
+.diamond-divider .d-icon {
+  color: #1a2456;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  line-height: 12px;
+  transform: scaleY(0.9);
+}
+
+/* Body descriptive paragraph */
+.cert-text {
+  width: 820px;
+  margin: 0px auto;
+  color: #55555a;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 21px;
+}
+
+.cert-text strong,
+.company-text {
+  color: #38383c;
+  font-weight: 700;
+}
+
+.cert-id-row {
+  margin-top: 32px;
+  color: #454549;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.cert-id-val {
+  font-weight: 400;
+}
+
+/* Footer Section: Date line and Signatory Block */
+.certificate-footer {
+  position: absolute;
+  z-index: 5;
+  top: 562px;
+  left: 160px;
+  width: 704px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.footer-left {
+  width: 150px;
+  text-align: center;
+}
+
+.footer-right {
+  position: relative;
+  width: 200px;
+  text-align: center;
+}
+
+.sign-line {
+  width: 100%;
+  height: 2px;
+  margin-bottom: 7px;
+  background: #3e3e42;
+}
+
+.date-text {
+  color: #4a4a4e;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 11.5px;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+/* Official circular stamp centered directly above signature line */
+.stamp-box {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  z-index: 6;
+  width: 55px;
+  height: 55px;
+  transform: translateX(-50%);
+}
+
+.svg-stamp {
+  width: 55px;
+  height: 55px;
+  opacity: 0.88;
+}
+
+.signatory-name {
+  color: #2d2d31;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 21px;
+  white-space: nowrap;
+}
+
+.signatory-sub {
+  color: #525256;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 10.5px;
+  line-height: 14px;
+  white-space: nowrap;
+  margin-top: 2px;
+}
+
+/* Floating Action Toolbar */
+.toolbar {
+  position: fixed;
+  top: 12px;
+  right: 14px;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 11px;
+  background: rgba(16, 22, 56, 0.88);
+  box-shadow: 0px 8px 22px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(10px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 32px;
+  padding: 7px 11px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: 'Poppins', Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+
+.btn-primary {
+  border-color: var(--gold);
+  background: var(--gold);
+  color: #151a35;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  background: #f0bd50;
+}
+
+.btn-secondary,
+.btn-icon {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.96);
+  color: #26305b;
+}
+
+/* Slide-out editor drawer */
+.backdrop {
+  position: fixed;
+  z-index: 190;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  display: none;
+  background: rgba(8, 13, 35, 0.5);
+}
+
+.backdrop.open {
+  display: block;
+}
+
+.editor-drawer {
+  position: fixed;
+  z-index: 200;
+  top: 0px;
+  right: -430px;
+  display: flex;
+  flex-direction: column;
+  width: 410px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -12px 0px 35px rgba(0, 0, 0, 0.2);
+  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.editor-drawer.open {
+  right: 0px;
+}
+
+.editor-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.editor-header h2 {
+  color: #17204e;
+  font-size: 17px;
+  font-weight: 600;
+}
+
+.close-btn {
+  border: 0px;
+  background: transparent;
+  color: #334155;
+  cursor: pointer;
+  font-size: 26px;
+  line-height: 26px;
+}
+
+.editor-form {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  color: #475569;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 7px;
+  outline: none;
+  color: #172033;
+  font-family: inherit;
+  font-size: 13px;
+}
+
+.form-group input:focus {
+  border-color: #596bb4;
+  box-shadow: 0px 0px 0px 3px rgba(89, 107, 180, 0.12);
+}
+
+/* Tablet and mobile toolbar adjustments */
+@media (max-width: 760px) {
+  .page-shell {
+    padding: 12px;
+  }
+
+  .toolbar {
+    top: auto;
+    right: 50%;
+    bottom: 10px;
+    max-width: calc(100% - 16px);
+    transform: translateX(50%);
+    gap: 4px;
+  }
+
+  .btn {
+    min-height: 30px;
+    padding: 6px 8px;
+    font-size: 10px;
+  }
+}
+
+/* A4 Landscape print styles */
+@media print {
+  @page {
+    size: 1024px 700px;
+    margin: 0px;
+  }
+
+  html,
+  body {
+    width: 1024px !important;
+    height: 700px !important;
+    overflow: visible !important;
+    background: #ffffff !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .toolbar,
+  .editor-drawer,
+  .backdrop {
+    display: none !important;
+  }
+
+  .page-shell {
+    display: block !important;
+    width: 1024px !important;
+    height: 700px !important;
+    padding: 0px !important;
+    overflow: hidden !important;
+    background: transparent !important;
+  }
+
+  .certificate {
+    width: 1024px !important;
+    height: 700px !important;
+    transform: none !important;
+    margin: 0px !important;
+    box-shadow: none !important;
+  }
+}
